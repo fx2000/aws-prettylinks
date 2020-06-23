@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-const getLinkPreview = require('link-preview-js');
+const { getLinkPreview } = require('link-preview-js');
 
 // Check request contents
 exports.handler = function (event, context, callback) {
@@ -79,9 +79,12 @@ function findUser(event, uid, callback) {
 }
 
 // Generate Link preview
-function linkify(event, user, calllback) {
+function linkify(event, user, callback) {
+    console.log(event)
     getLinkPreview(event.url, {
-        'user-agent': 'googlebot',
-        'Accept-Language': language
-    }).then(data => {console.log(data)});
+        headers: {
+            'user-agent': 'googlebot',
+            'Accept-Language': user.user_language
+        }
+    }).then(data => callback(null, data));
 }
