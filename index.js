@@ -78,13 +78,26 @@ function findUser(event, uid, callback) {
     });
 }
 
+// Autocomplete url
+function fixUrl (url) {
+    if (!!url && !/^https?:\/\//i.test(url)) {
+        return 'http://' + url;
+    } else {
+        return url;
+    }
+}
+
 // Generate Link preview
 function linkify(event, user, callback) {
     console.log(event)
-    getLinkPreview(event.url, {
-        headers: {
+    try {
+        getLinkPreview(fixUrl(event.url), {
+            headers: {
             'user-agent': 'googlebot',
             'Accept-Language': user.user_language
-        }
-    }).then(data => callback(null, data));
+            }
+        }).then(data => callback(null, data));
+    } catch (error) {
+        console.error(error)
+    }
 }
