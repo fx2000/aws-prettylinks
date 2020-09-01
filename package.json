@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "link-preview-js": "^2.0.4"
+    "open-graph": "^0.2.4"
   },
   "devDependencies": {},
   "scripts": {
