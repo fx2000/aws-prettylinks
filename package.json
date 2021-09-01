@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "open-graph": "^0.2.4"
+    "open-graph": "^0.2.6"
   },
   "devDependencies": {},
   "scripts": {
